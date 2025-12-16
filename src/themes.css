@@ -1,0 +1,53 @@
+/* ------------------------------
+   MULTI THEME SYSTEM
+--------------------------------*/
+
+/* 🎄 1) LUXURY RED + GOLD (APPLE CHRISTMAS) */
+#app-root.luxury {
+  background: radial-gradient(circle at top, #ffdfc4 0%, #d62828 35%, #8b0000 100%);
+  color: #fff;
+}
+
+#app-root.luxury .option-card {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#app-root.luxury .icon-circle {
+  background: rgba(255, 220, 50, 0.25);
+  box-shadow: 0 0 25px rgba(255,190,0,0.6);
+}
+
+/* ❄ 2) FROST SILVER BLUE */
+#app-root.frost {
+  background: linear-gradient(135deg, #e6f2ff, #bcd7ff, #7db9ff);
+  color: #002b45;
+}
+
+#app-root.frost .option-card {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+#app-root.frost .icon-circle {
+  background: rgba(160, 220, 255, 0.3);
+  box-shadow: 0 0 25px rgba(120, 190, 255, 0.6);
+}
+
+/* 🍬 3) CANDY PINK MINT POP */
+#app-root.candy {
+  background: linear-gradient(135deg, #ffe8f8, #ffb3d1, #ff6fae);
+  color: #4a0034;
+}
+
+#app-root.candy .option-card {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+#app-root.candy .icon-circle {
+  background: rgba(255, 160, 220, 0.3);
+  box-shadow: 0 0 25px rgba(255, 110, 170, 0.65);
+}
+
+/* SMOOTH THEME TRANSITION */
+#app-root {
+  transition: background 0.6s ease, color 0.6s ease;
+}

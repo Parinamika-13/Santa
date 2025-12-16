@@ -1,0 +1,135 @@
+/* ------------------------------
+   THEME SWITCHER PANEL
+--------------------------------*/
+
+.switcher-wrapper {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+/* -----------------------------------
+   1️⃣ BUTTON SWITCHERS
+-----------------------------------*/
+
+.theme-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-buttons button {
+  padding: 8px 16px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.28);
+  color: #fff;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+.theme-buttons button:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: rgba(255,255,255,0.45);
+}
+
+/* -----------------------------------
+   2️⃣ APPLE-STYLE TOGGLE
+-----------------------------------*/
+
+.apple-toggle {
+  width: 80px;
+  height: 36px;
+  background: rgba(255,255,255,0.28);
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(0,0,0,0.25);
+}
+
+.toggle-knob {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  transition: 0.45s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Moves the knob based on theme */
+.toggle-knob.luxury {
+  left: 2px;
+  background: gold;
+  box-shadow: 0 0 12px gold;
+}
+
+.toggle-knob.frost {
+  left: 24px;
+  background: #8ecbff;
+  box-shadow: 0 0 12px #8ecbff;
+}
+
+.toggle-knob.candy {
+  left: 46px;
+  background: #ff77cc;
+  box-shadow: 0 0 12px #ff77cc;
+}
+
+/* -----------------------------------
+   3️⃣ FLOATING ORNAMENT THEME ICONS
+-----------------------------------*/
+
+.floating-ornaments {
+  display: flex;
+  gap: 14px;
+}
+
+.ornament {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+  animation: floatY 3s ease-in-out infinite;
+}
+
+.ornament:hover {
+  transform: scale(1.18);
+}
+
+@keyframes floatY {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.ornament.red {
+  background: rgba(255, 220, 0, 0.35);
+  box-shadow: 0 0 15px rgba(255,200,0,0.55);
+}
+
+.ornament.blue {
+  background: rgba(120, 190, 255, 0.35);
+  box-shadow: 0 0 15px rgba(120,190,255,0.55);
+}
+
+.ornament.candy {
+  background: rgba(255, 140, 200, 0.35);
+  box-shadow: 0 0 15px rgba(255,140,200,0.55);
+}

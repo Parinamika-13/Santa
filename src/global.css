@@ -1,0 +1,116 @@
+/* ------------------------------
+   GLOBAL PREMUIM CHRISTMAS UI
+--------------------------------*/
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Mountains+of+Christmas:wght@400;700&display=swap');
+
+:root {
+  --transition-speed: 0.45s;
+  --radius: 20px;
+}
+
+/* APP ROOT */
+#app-root {
+  min-height: 100vh;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background var(--transition-speed), color var(--transition-speed);
+  font-family: "Inter", sans-serif;
+}
+
+/* GLOBAL SNOW BACKGROUND */
+#app-root::before {
+  content: "❅ ❆ ✻ ❄ ✼";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 200%;
+  font-size: 40px;
+  opacity: 0.25;
+  animation: snowMove 18s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes snowMove {
+  0% { transform: translateY(-10%) translateX(0); }
+  100% { transform: translateY(120%) translateX(20%); }
+}
+
+/* TITLE */
+.main-title {
+  font-size: 58px;
+  font-family: "Mountains of Christmas", cursive;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  text-align: center;
+  font-size: 18px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+/* DASHBOARD GRID */
+.dashboard-options {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* CARD (base style) */
+.option-card {
+  text-decoration: none;
+  padding: 30px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  transform: translateY(0px);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed), background var(--transition-speed);
+}
+
+.option-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+}
+
+/* ICON CIRCLE */
+.icon-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+  backdrop-filter: blur(8px);
+}
+
+/* CARD TEXT */
+.option-content {
+  text-align: center;
+  color: inherit;
+}
+
+.option-content h2 {
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.option-content p {
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* PAGE STUBS */
+.page {
+  padding-top: 40px;
+  text-align: center;
+  color: inherit;
+}

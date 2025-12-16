@@ -1,0 +1,225 @@
+/* 🎄 Christmas Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+@import "./global.css";
+@import "./themes.css";
+@import "./switcher.css";
+
+/* 🌨️ FULL BACKGROUND WITH MULTI-LAYER SNOW */
+.snow-bg {
+  min-height: 100vh;
+  margin: 0;
+  padding: 40px;
+  font-family: "Poppins", sans-serif;
+  color: white;
+
+  background: radial-gradient(circle at top, #ff4d4d33 0%, #0d1b2a 40%, #0a1120 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ❄ SNOW LAYER 1 - Big soft flakes */
+.snow-bg::before {
+  content: "❅ ❆ ❄ ✻ ✼";
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 200%;
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.7);
+  animation: snowFall 12s linear infinite;
+  pointer-events: none;
+}
+
+/* ❄ SNOW LAYER 2 - Medium flakes */
+.snow-bg::after {
+  content: "❅ ❆ ❄ ✻ ✼";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 200%;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.45);
+  animation: snowFall2 18s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes snowFall {
+  from { transform: translateY(-10%) translateX(0); }
+  to { transform: translateY(110%) translateX(-40%); }
+}
+
+@keyframes snowFall2 {
+  from { transform: translateY(-10%) translateX(0); }
+  to { transform: translateY(120%) translateX(30%); }
+}
+
+
+/* ✨ FLOATING GLOW PARTICLES */
+.snow-bg::after {
+  mix-blend-mode: overlay;
+}
+
+@keyframes floatGlow {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-15px) translateX(10px) scale(1.3); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+
+
+/* 🧊 GLASSMORPHIC CENTER CARD */
+.card {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 45px;
+  border-radius: 22px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  backdrop-filter: blur(16px) brightness(1.2) saturate(1.4);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.45),
+    0 0 40px rgba(255, 0, 0, 0.25),
+    0 0 60px rgba(255, 200, 0, 0.15);
+
+  animation: floatCard 5s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* 🎄 Title */
+.title {
+  font-family: "Mountains of Christmas", cursive;
+  font-size: 50px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.glow {
+  color: #ffeb3b;
+  text-shadow:
+    0 0 8px #ff0000,
+    0 0 15px #ff8800,
+    0 0 25px #ffee00;
+}
+
+/* 🎁 Inputs */
+.input-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.xmas-input {
+  flex: 1;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #111;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+/* ➕ Add button */
+.add-btn {
+  background: #ff2d2d;
+  padding: 12px 18px;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.25s;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+.add-btn:hover {
+  transform: scale(1.1);
+  background: #ff1a1a;
+}
+
+/* 🎅 Name tags */
+.name-tag {
+  background: rgba(255, 255, 255, 0.18);
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.4s ease;
+}
+
+/* ✨ Button to Start Secret Santa */
+.start-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(45deg, #ff2e2e, #ff8a00);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 20px;
+  margin-top: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.35s;
+  box-shadow:
+    0 0 20px rgba(255, 80, 80, 0.8),
+    0 0 35px rgba(255, 150, 0, 0.5);
+}
+
+.start-btn:hover {
+  transform: scale(1.08) rotate(-1deg);
+}
+
+/* 🎄 Secret Santa results */
+.results {
+  animation: fadeIn 0.8s ease;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  margin-top: 10px;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  font-size: 18px;
+  animation: slideIn 0.5s ease both;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-25px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* 🔄 Reset button */
+.reset-btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  background: #00b7ff;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 0 20px rgba(0, 180, 255, 0.8);
+}
+
+.reset-btn:hover {
+  transform: scale(1.06);
+}
+
+/* Subtle opacity fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
