@@ -1,0 +1,71 @@
+/* OVERLAY */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(#0f1f1c, #050a09);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* TITLE */
+.transition-overlay h1 {
+  position: absolute;
+  top: 16%;
+  width: 100%;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: 3rem;
+  letter-spacing: 0.2em;
+  color: #fafaf8;
+}
+
+/* SLEIGH */
+.sleigh {
+  position: absolute;
+  bottom: 32%;
+}
+
+/* SNOWMEN */
+.snowmen {
+  position: absolute;
+  bottom: 28%;
+  display: flex;
+  gap: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* SVGs */
+.snowman-svg {
+  width: 70px;
+  opacity: 0.9;
+}
+
+.sleigh-svg {
+  width: 380px;
+}
+
+/* SNOW */
+.snow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.snow span {
+  position: absolute;
+  top: -10px;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #fff, transparent);
+  border-radius: 50%;
+  animation-name: snowFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes snowFall {
+  to {
+    transform: translateY(110vh);
+  }
+}

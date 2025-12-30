@@ -1,98 +1,109 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useApp } from '../contexts/AppContext';
+import { useState, useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import "../styles/themes.css";
 
 export default function JoinRoom() {
-  const [roomCode, setRoomCode] = useState('');
-  const [userName, setUserName] = useState('');
-  const [isJoining, setIsJoining] = useState(false);
-  const [error, setError] = useState('');
-  const { joinRoom, rooms } = useApp();
   const navigate = useNavigate();
-  const { roomCode: urlRoomCode } = useParams();
+  const [searchParams] = useSearchParams();
+  const [roomId, setRoomId] = useState("");
+  const [name, setName] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Pre-fill room code if it's in the URL
   useEffect(() => {
-    if (urlRoomCode) {
-      setRoomCode(urlRoomCode.toUpperCase());
+    const code = searchParams.get("code");
+    if (code) {
+      setRoomId(code.toUpperCase());
     }
-  }, [urlRoomCode]);
+  }, [searchParams]);
 
-  const handleJoinRoom = async (e) => {
-    e.preventDefault();
-    if (!roomCode || !userName.trim()) return;
-    
-    setIsJoining(true);
-    setError('');
-    
-    const result = joinRoom(roomCode.toUpperCase(), userName.trim());
-    
-    if (result.success) {
-      navigate(`/room/${roomCode}`);
-    } else {
-      setError(result.error || 'Failed to join room. Please check the code and try again.');
-      setIsJoining(false);
+  async function handleJoin() {
+    if (!roomId.trim() || !name.trim()) return alert("Enter both Room ID and Your Name!");
+
+    setLoading(true);
+    try {
+      const res = await fetch("/api/join", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ roomId, name })
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        throw new Error(errData.error || "Room not found");
+      }
+
+      const data = await res.json();
+      localStorage.setItem("santa_name", name);
+      localStorage.setItem("is_creator", "false");
+      navigate(`/room/${roomId.toUpperCase()}`);
+
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      setLoading(false);
     }
-  };
+  }
 
   return (
-    <div className="join-room-container">
-      <div className="snowflakes" aria-hidden="true">
-        {[...Array(8)].map((_, i) => (
-          <div key={i} className="snowflake">❅</div>
-        ))}
-      </div>
+    <div className="page-container">
+      <motion.div
+        initial={{ y: 50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ type: "spring", stiffness: 100 }}
+        className="card-form"
+        style={{
+          background: "rgba(20, 40, 60, 0.6)",
+          border: "2px solid rgba(0, 255, 255, 0.3)",
+          boxShadow: "0 0 40px rgba(0, 255, 255, 0.1)"
+        }}
+      >
+        <motion.div
+          animate={{ y: [0, -10, 0] }}
+          transition={{ repeat: Infinity, duration: 3 }}
+          style={{ fontSize: "4rem", marginBottom: "1rem" }}
+        >
+          ❄️
+        </motion.div>
 
-      <div className="join-room-card">
-        <div className="tree-icon">🎄</div>
-        <h1>Join a Secret Santa Room</h1>
-        
-        {error && <div className="error-message">{error}</div>}
-        
-        <form onSubmit={handleJoinRoom} className="join-form">
-          <div className="form-group">
-            <label htmlFor="roomCode">Room Code:</label>
-            <input
-              type="text"
-              id="roomCode"
-              value={roomCode}
-              onChange={(e) => setRoomCode(e.target.value.toUpperCase())}
-              placeholder="Enter room code"
-              required
-              className="code-input"
-              maxLength="7"
-              autoComplete="off"
-              autoCapitalize="characters"
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="userName">Your Name:</label>
-            <input
-              type="text"
-              id="userName"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              placeholder="Enter your name"
-              required
-              className="name-input"
-            />
-          </div>
-          
-          <button 
-            type="submit" 
-            className="join-button"
-            disabled={!roomCode || !userName.trim() || isJoining}
-          >
-            {isJoining ? 'Joining...' : 'Join Room'}
-          </button>
-        </form>
+        <h2 style={{
+          background: "linear-gradient(to right, #00FFFF, #00BFFF)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent"
+        }}>
+          Join the Fun
+        </h2>
 
-        <div className="help-section">
-          <h3>Don't have a code?</h3>
-          <p>Ask your friend to share their room code with you or <a href="/create">create your own room</a>.</p>
-        </div>
-      </div>
+        <input
+          type="text"
+          placeholder="Room Code (e.g. XMAS24)"
+          value={roomId}
+          onChange={(e) => setRoomId(e.target.value.toUpperCase())}
+          style={{ textAlign: "center", textTransform: "uppercase", letterSpacing: "3px", fontWeight: "bold" }}
+        />
+        <input
+          type="text"
+          placeholder="Your Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleJoin()}
+          style={{ textAlign: "center" }}
+        />
+
+        <motion.button
+          whileHover={{ scale: 1.05, boxShadow: "0 0 20px #00BFFF" }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleJoin}
+          disabled={loading}
+          style={{ background: "linear-gradient(45deg, #00b09b, #96c93d)" }}
+        >
+          {loading ? "Joining..." : "Enter Room"}
+        </motion.button>
+
+        <button className="secondary" onClick={() => navigate("/")}>
+          Cancel
+        </button>
+      </motion.div>
     </div>
   );
 }

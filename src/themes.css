@@ -1,53 +1,53 @@
-/* ------------------------------
-   MULTI THEME SYSTEM
---------------------------------*/
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;500&display=swap');
 
-/* 🎄 1) LUXURY RED + GOLD (APPLE CHRISTMAS) */
-#app-root.luxury {
-  background: radial-gradient(circle at top, #ffdfc4 0%, #d62828 35%, #8b0000 100%);
-  color: #fff;
+
+
+:root {
+  --bg-main: #0f1f1c;
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --gold: #c9a44c;
+  --snow: #fafaf8;
+  --cranberry: #7a2e2e;
 }
 
-#app-root.luxury .option-card {
-  background: rgba(255, 255, 255, 0.15);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#app-root.luxury .icon-circle {
-  background: rgba(255, 220, 50, 0.25);
-  box-shadow: 0 0 25px rgba(255,190,0,0.6);
+body {
+  background: var(--bg-main);
+  font-family: 'Inter', sans-serif;
+  color: white;
+  overflow-x: hidden;
 }
 
-/* ❄ 2) FROST SILVER BLUE */
-#app-root.frost {
-  background: linear-gradient(135deg, #e6f2ff, #bcd7ff, #7db9ff);
-  color: #002b45;
+/* ✨ Glass button */
+.glass-btn {
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 14px 34px;
+  border-radius: 999px;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-#app-root.frost .option-card {
-  background: rgba(255, 255, 255, 0.4);
+.glass-btn:hover {
+  box-shadow: 0 0 30px rgba(201, 164, 76, 0.6);
+  transform: translateY(-2px);
 }
 
-#app-root.frost .icon-circle {
-  background: rgba(160, 220, 255, 0.3);
-  box-shadow: 0 0 25px rgba(120, 190, 255, 0.6);
+/* ❄️ Snow animation */
+@keyframes snow {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(110vh); }
 }
 
-/* 🍬 3) CANDY PINK MINT POP */
-#app-root.candy {
-  background: linear-gradient(135deg, #ffe8f8, #ffb3d1, #ff6fae);
-  color: #4a0034;
-}
-
-#app-root.candy .option-card {
-  background: rgba(255, 255, 255, 0.35);
-}
-
-#app-root.candy .icon-circle {
-  background: rgba(255, 160, 220, 0.3);
-  box-shadow: 0 0 25px rgba(255, 110, 170, 0.65);
-}
-
-/* SMOOTH THEME TRANSITION */
-#app-root {
-  transition: background 0.6s ease, color 0.6s ease;
+.animate-snow {
+  animation: snow linear infinite;
 }

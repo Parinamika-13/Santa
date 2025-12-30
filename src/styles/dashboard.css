@@ -1,0 +1,305 @@
+/* Inherit base styles */
+@import "../christmas.css";
+
+@keyframes twinkle {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* 🏠 VINTAGE HOME THEME */
+.dashboard-page {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  /* Cozy Vintage Wallpaper Background */
+  background:
+    linear-gradient(rgba(45, 10, 10, 0.85), rgba(20, 10, 20, 0.9)),
+    url("https://www.transparenttextures.com/patterns/damask-textured.png"),
+    #3e1e1e;
+  /* Deep warm burgundy base */
+  color: #f0e6d2;
+  /* Parchment text color */
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* 🎄 CLASSIC WARM LIGHTS (Vintage Bulbs) */
+.light-rope {
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  position: absolute;
+  z-index: 10;
+  margin: -15px 0 0 0;
+  padding: 0;
+  pointer-events: none;
+  width: 100%;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.5));
+}
+
+.light-rope li {
+  position: relative;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 14px;
+  height: 32px;
+  border-radius: 50%;
+  margin: 25px;
+  /* Spaced out more like old bulbs */
+  display: inline-block;
+  background: #ffaa00;
+  /* Warm white default */
+  box-shadow: 0px 5px 25px 5px rgba(255, 170, 0, 0.5);
+  animation-name: flash-warm;
+  animation-duration: 3s;
+}
+
+.light-rope li:nth-child(2n+1) {
+  background: #ff3333;
+  /* Vintage Red */
+  box-shadow: 0px 5px 25px 5px rgba(255, 50, 50, 0.5);
+  animation-name: flash-red;
+  animation-duration: 4s;
+}
+
+.light-rope li:nth-child(3n+1) {
+  background: #33ff33;
+  /* Vintage Green */
+  box-shadow: 0px 5px 25px 5px rgba(50, 255, 50, 0.5);
+  animation-name: flash-green;
+  animation-duration: 3.5s;
+}
+
+.light-rope li:before {
+  content: "";
+  position: absolute;
+  background: #222;
+  width: 12px;
+  height: 10px;
+  border-radius: 3px;
+  top: -5px;
+  left: 1px;
+}
+
+.light-rope li:after {
+  content: "";
+  top: -15px;
+  left: 10px;
+  position: absolute;
+  width: 60px;
+  height: 20px;
+  border-bottom: solid #1a1a1a 2px;
+  border-radius: 50%;
+}
+
+@keyframes flash-warm {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes flash-red {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes flash-green {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* NAVBAR */
+.dash-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: rgba(30, 20, 20, 0.95);
+  border-bottom: 2px solid #bfa77f;
+  /* Gold border */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  z-index: 5;
+}
+
+.dash-logo {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 2.5rem;
+  color: #d4af37;
+  /* Gold */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.nav-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-family: 'Georgia', serif;
+}
+
+.profile-name {
+  color: #f0e6d2;
+  font-size: 1.2rem;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+.profile-avatar {
+  width: 45px;
+  height: 45px;
+  background: #5d4037;
+  border: 2px solid #bfa77f;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.1);
+  background: #d4af37;
+  color: #3e1e1e;
+}
+
+/* HERO SECTION */
+.dash-hero {
+  text-align: center;
+  margin: 4rem 0 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.dash-hero h2 {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 5rem;
+  color: #f0e6d2;
+  text-shadow:
+    0 0 10px rgba(255, 215, 0, 0.3),
+    3px 3px 0px #3e1e1e;
+  margin-bottom: 0.5rem;
+}
+
+/* 📜 VINTAGE PARCHMENT CARDS */
+.dash-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.dash-card {
+  background: #fdf5e6;
+  /* Old Lace / Parchment */
+  border: 8px solid #5d4037;
+  /* Wood frame look */
+  border-radius: 4px;
+  /* Sharper corners like frames/paper */
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  cursor: pointer;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow:
+    10px 10px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 60px rgba(160, 100, 50, 0.1);
+  /* Inner aged shadow */
+}
+
+/* Paper texture overlay */
+.dash-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("https://www.transparenttextures.com/patterns/old-paper.png");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.dash-card h3 {
+  font-family: 'Mountains of Christmas', cursive;
+  font-size: 2.5rem;
+  color: #3e1e1e;
+  /* Dark ink */
+  margin-bottom: 1rem;
+  z-index: 2;
+  border-bottom: 2px solid #bfa77f;
+  padding-bottom: 10px;
+}
+
+.dash-card p {
+  font-family: 'Georgia', serif;
+  color: #5d4037;
+  font-size: 1.1rem;
+  z-index: 2;
+  font-style: italic;
+}
+
+/* INTERACTIVE CARD HOVER */
+.dash-card:hover {
+  transform: translateY(-10px) rotate(1deg);
+  box-shadow:
+    15px 15px 40px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(255, 215, 0, 0.2);
+  border-color: #8d6e63;
+}
+
+.dash-card.create h3::before {
+  content: "🕯️ ";
+}
+
+.dash-card.join h3::before {
+  content: "🎟️ ";
+}
+
+.dash-card.memories h3::before {
+  content: "🕰️ ";
+}
+
+.dash-card.suggestions h3::before {
+  content: "🧸 ";
+}
